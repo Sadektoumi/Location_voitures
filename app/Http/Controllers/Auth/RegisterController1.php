@@ -24,8 +24,8 @@ class RegisterController1 extends Controller
         {
             return response(['errors'=>$validator->errors()->all()], 400);
         }
-    
-        $user = New User() ; 
+
+        $user = New User() ;
         $user->id = Str::uuid();
         $user->name = $request['name'];
         $user->lastname = $request['lastname'];

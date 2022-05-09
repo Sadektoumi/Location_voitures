@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::POST('/register' , [RegisterController1::class ,'Register']);
 Route::POST('/login' , [LoginController::class ,'Login']);
+Route::Get('/afficherVehicule' , [VehiculeController::class ,'index']);
 
 Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
 

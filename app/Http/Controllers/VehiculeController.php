@@ -101,4 +101,14 @@ class VehiculeController extends Controller
         ], 500);
     }
 }
+public function index(){
+    $vehicule =Vehicule::all();
+    return  response()->json([
+        'success' => true ,
+        'message' => $vehicule
+
+    ],201);
+
+
+}
 }

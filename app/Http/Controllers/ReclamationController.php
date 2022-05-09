@@ -19,7 +19,7 @@ class ReclamationController extends Controller
               'reclamation'=>$request->get('reclamation'),
 
           ]);
-      $save = $reclam ->save() ;
+      $save = $reclam->save() ;
 
       if($save){
         return response()->json([
