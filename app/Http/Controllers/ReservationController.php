@@ -84,7 +84,16 @@ class ReservationController extends Controller
             ],500);
              }
     }
+    public function index(){
+        $Reservation =Reservation::all();
+        return  response()->json([
+            'success' => true ,
+            'message' => $Reservation
 
+        ],201);
+
+
+    }
 
 
 }

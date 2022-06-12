@@ -31,8 +31,8 @@ class LoginController extends Controller
     //     {
     //         return response(['errors'=>$validator->errors()->all()], 400);
     //     }
-    
-    //     $user = New User() ; 
+
+    //     $user = New User() ;
     //     $user->id = Str::uuid();
     //     $user->name = $request['name'];
     //     $user->lastname = $request['lastname'];
@@ -81,10 +81,12 @@ class LoginController extends Controller
 
         $user = $request->user();
         $token = $user->createToken('auth_token')->plainTextToken;
+        $roles = $user->getRoleNames();
 
         return response()->json([
                     'message'=>'user connected', $user,
                    'access_token' => $token,
+                   'role' => $roles,
         ]);
     }
 

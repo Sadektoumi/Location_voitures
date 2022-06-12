@@ -71,4 +71,15 @@ class ReclamationController extends Controller
            ],500);
        }
    }
+
+   public function index(){
+    $Reclamation =Reclamation::all();
+    return  response()->json([
+        'success' => true ,
+        'message' => $Reclamation
+
+    ],201);
+
+
+}
 }
