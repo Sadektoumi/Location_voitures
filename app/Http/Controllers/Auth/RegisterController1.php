@@ -45,13 +45,13 @@ class RegisterController1 extends Controller
         if($save){
             return response()->json([
                 'success' => true,
-                'message' => 'Successfully created user!',
+                'message' => 'Successfully created !',
 
             ], 201);
         }else{
             return response()->json([
                 'success' => false,
-                'message' => 'Something went wrong!'
+                'message' => ' wrong email or password '
             ], 500);
         }
     }

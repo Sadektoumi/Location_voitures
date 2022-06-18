@@ -33,21 +33,30 @@ Route::GET('ShowAgent',[agentController::class,'index']);
 
 
 
-Route::post('CreateAdmin',[AdminController::class,'CreateAdmin']);
-Route::GET('ShowAdmin',[AdminController::class,'index']);
+Route::post('/CreateAdmin',[AdminController::class,'CreateAdmin']);
+Route::GET('/ShowAdmin',[AdminController::class,'index']);
+Route::delete('/deleteadmin/{id}',[AdminController::class,'DeleteAdmin']);
+
+
+
+Route::Get('/afficherReclamation' , [ReclamationController::class ,'index']);
+Route::POST('/AddReclamation',[ReclamationController::class,'addReclamation']);
+Route::PUT('UpdateReclamation/{id}',[ReclamationController::class,'UpdateReclamation']);
+Route::delete('DeleteReclamation/{id}',[ReclamationController::class,'DeleteReclamation']);
 
 
 });
+
+
+
+
 Route::Get('/afficherVehicule' , [VehiculeController::class ,'index']);
 Route::POST('Addvehicule', [VehiculeController::class,'CreateVehicule']);
 Route::post('Updatevehicule/{id}', [VehiculeController::class,'UpdateVehicule']);
 Route::delete('Deletevehicule/{id}', [VehiculeController::class,'DeleteVehicule']);
 
 
-Route::Get('/afficherReclamation' , [ReclamationController::class ,'index']);
-Route::POST('AddReclamation',[ReclamationController::class,'addReclamation']);
-Route::PUT('UpdateReclamation/{id}',[ReclamationController::class,'UpdateReclamation']);
-Route::delete('DeleteReclamation/{id}',[ReclamationController::class,'DeleteReclamation']);
+
 
 
 Route::Get('/afficherReservation' , [ReclamationController::class ,'index']);

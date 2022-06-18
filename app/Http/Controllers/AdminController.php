@@ -138,7 +138,7 @@ class AdminController extends Controller
                 $admin = User::role('admin')->get();
                 return response()->json([
                     'admins' => $admin,
-                ],500);
+                ],200);
 
 
 
