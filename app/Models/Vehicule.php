@@ -12,5 +12,9 @@ class Vehicule extends Model
         'vehicule_pic',
         'kilometrage',
         'date_mise_en_circulation',
+        'price',
+        'etat'
     ];
 }
+
+

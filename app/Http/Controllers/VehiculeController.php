@@ -26,9 +26,24 @@ class VehiculeController extends Controller
         $vehicule = New Vehicule() ;
 
         $vehicule->Matricule = $request['Matricule'];
-        $vehicule->vehicule_pic = $request['vehicule_pic'];
+        if ($request->file('vehicule_pic')) {
+            $file = $request->file('vehicule_pic');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('assets'), $filename);
+            $vehicule->vehicule_pic = $filename;
+        }
+        $vehicule->price= $request->get('price');
+        $vehicule->etat = 'disponible';
+
         $vehicule->kilometrage =$request['kilometrage'];
         $vehicule->date_mise_en_circulation = $request['date_mise_en_circulation'];
+
+
+
+
+
+
+
 
         $save = $vehicule->save();
 
@@ -50,24 +65,34 @@ class VehiculeController extends Controller
 
     public function UpdateVehicule(Request $request, $id)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'Matricule' => 'required',
-        //     'vehicule_pic' => 'required',
-        //     'kilometrage'=>'required',
-        //     'date_mise_en_circulation' =>'required',
-
-        //    ]);
-        //     if ($validator->fails())
-        //     {
-        //         return response(['errors'=>$validator->errors()->all()], 400);
-        //    }
-
+        /*$validator = Validator::make($request->all(), [
+             'Matricule' => 'required',
+             'vehicule_pic' => 'required',
+             'kilometrage'=>'required',
+             'date_mise_en_circulation' =>'required',
+            ]);
+             if ($validator->fails())
+             {
+                 return response(['errors'=>$validator->errors()->all()], 400);
+            }*/
+        return response()->json([
+            'success' => $request['Matricule'],
+        ], 201);
         $vehicule = Vehicule::find($id);
         $vehicule->Matricule =  $request->get('Matricule');
-        $vehicule->vehicule_pic = $request->get('vehicule_pic');
+        if ($request->file('vehicule_pic')) {
+            $file = $request->file('vehicule_pic');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('assets'), $filename);
+            $vehicule->vehicule_pic = $filename;
+
+        }
+        $vehicule->price= $request->get('price');
+        $vehicule->etat = 'disponible';
         $vehicule->kilometrage = $request->get('kilometrage');
         $vehicule->date_mise_en_circulation= $request->get('date_mise_en_circulation');
 
+        // dd($vehicule);
         $save = $vehicule->save();
         if($save){
             return response()->json([
@@ -101,14 +126,22 @@ class VehiculeController extends Controller
         ], 500);
     }
 }
+
+
 public function index(){
-    $vehicule =Vehicule::all();
+    $cars =Vehicule::all();
     return  response()->json([
         'success' => true ,
-        'message' => $vehicule
+        'cars' => $cars
 
     ],201);
 
 
+
+
 }
+
+
 }
+
+

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('reclamation');
+            $table->string('userId');
+            $table->foreignIdFor(User::class);
+
         });
     }
 

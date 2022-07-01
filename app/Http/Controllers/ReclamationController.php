@@ -1,21 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Reclamation;
 use Illuminate\Http\Request;
 
 
 class ReclamationController extends Controller
 {
+
+
     public function addReclamation (Request $request){
+
+      $user = Auth::user();
+
       $request -> validate([
           'reclamation' => 'required',
       ]);
 
 
       $reclam = new Reclamation(
+
           [
+              'user_id'=>$user->id,
               'reclamation'=>$request->get('reclamation'),
 
           ]);
@@ -58,7 +65,12 @@ class ReclamationController extends Controller
     }
 
 
+
+
+
    public  function DeleteReclamation($id){
+
+
        $reclam = Reclamation::find($id);
        $delete =$reclam->delete();
        if($delete){
@@ -72,8 +84,20 @@ class ReclamationController extends Controller
        }
    }
 
-   public function index(){
-    $Reclamation =Reclamation::all();
+   public function index_user(Request $request){
+
+    $Reclamation =Reclamation::with('users')->where('user_id', $request->user()->id)->get();
+    return  response()->json([
+        'success' => true ,
+        'message' => $Reclamation
+    ],201);
+
+
+}
+
+public function index(){
+
+    $Reclamation =Reclamation::with('users')->get();
     return  response()->json([
         'success' => true ,
         'message' => $Reclamation

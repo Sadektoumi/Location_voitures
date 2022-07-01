@@ -153,5 +153,33 @@ class AdminController extends Controller
 
 
 
+            public function index1($id){
+
+                $user = Auth::user();
+                $roles = $user->roles;
+                //return [$roles[0]->name];
+
+                if ($roles[0]->name == 'SuperAdmin'){
+
+                $admin = User::find($id);
+                return response()->json([
+                    'admin' => $admin,
+                ],200);
+
+
+
+            }
+            else{
+                return response()->json([
+                 'success' => false,
+                 'message' => 'C est pas un superadmin!'
+             ], 500);
+           }
+            }
+
+
+
+
+
 
 }

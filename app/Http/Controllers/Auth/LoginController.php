@@ -87,6 +87,7 @@ class LoginController extends Controller
                     'message'=>'user connected', $user,
                    'access_token' => $token,
                    'role' => $roles,
+                   'user' => $user
         ]);
     }
 
